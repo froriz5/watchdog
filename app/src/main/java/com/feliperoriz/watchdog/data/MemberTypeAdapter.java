@@ -5,19 +5,13 @@ import android.support.annotation.NonNull;
 import com.squareup.moshi.FromJson;
 import com.squareup.moshi.ToJson;
 
-import org.joda.time.DateTime;
-
-/**
- * Created by feliperoriz on 12/21/17.
- */
-
 public class MemberTypeAdapter {
 
-    @ToJson String toJson(@NonNull DateTime time) {
-        return time.toString();
+    @ToJson String toPartyJson(@NonNull MemberDTO.Party party) {
+        return party.getInitial();
     }
 
-    @FromJson DateTime fromJson(@NonNull String time) {
-        return DateTime.parse(time);
+    @FromJson MemberDTO.Party fromJson(@NonNull String initial) {
+        return MemberDTO.Party.Companion.fromString(initial);
     }
 }

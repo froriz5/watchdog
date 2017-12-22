@@ -6,10 +6,13 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 /**
- * Created by feliperoriz on 12/21/17.
+ * Pro Publica Congress API
  */
 interface CongressApi {
 
     @GET("members/house/{state}/current.json")
-    fun getMembers(@Path("state") state: String): Single<MembersDTO>
+    fun getMembersFromHouse(@Path("state") state: String): Single<MembersDTO>
+
+    @GET("members/senate/{state}/current.json")
+    fun getMembersFromSenate(@Path("state") state: String): Single<MembersDTO>
 }

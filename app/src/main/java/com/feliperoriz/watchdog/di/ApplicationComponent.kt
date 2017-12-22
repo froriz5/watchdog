@@ -1,11 +1,8 @@
 package com.feliperoriz.watchdog.di
 
-import android.app.Application
-import com.feliperoriz.watchdog.MainActivity
+import com.feliperoriz.watchdog.ui.MainActivity
 import dagger.Component
 import javax.inject.Singleton
-import dagger.BindsInstance
-
 
 
 /**

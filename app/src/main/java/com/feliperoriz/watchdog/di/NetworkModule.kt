@@ -23,6 +23,10 @@ class NetworkModule {
 
     @Singleton
     @Provides
+    fun providesMemberTypeAdapter() = MemberTypeAdapter()
+
+    @Singleton
+    @Provides
     fun providesMoshi(memberAdapter: MemberTypeAdapter): Moshi {
         return Moshi.Builder()
                 .add(memberAdapter)
@@ -46,11 +50,11 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesRetrofit(client: OkHttpClient): Retrofit {
+    fun providesRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
